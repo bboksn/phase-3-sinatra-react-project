@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_26_053902) do
+ActiveRecord::Schema.define(version: 2023_01_26_072251) do
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "pfp_url"
+    t.string "f_name"
+    t.string "l_name"
+    t.integer "phone_number"
+  end
 
   create_table "relationship_categories", force: :cascade do |t|
     t.string "relation"
