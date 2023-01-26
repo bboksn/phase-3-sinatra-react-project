@@ -1,3 +1,3 @@
-class Relationship > ActiveRecord::Base
+class Relationship < ActiveRecord::Base
     self.primary_key = "relation"
 end
