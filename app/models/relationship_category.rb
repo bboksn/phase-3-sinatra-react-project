@@ -1,3 +1,3 @@
 class Relationship_Category < ActiveRecord::Base
-    self.primary_key = "relation"
+     has_many :contacts
 end
