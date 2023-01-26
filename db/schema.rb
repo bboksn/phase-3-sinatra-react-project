@@ -17,9 +17,10 @@ ActiveRecord::Schema.define(version: 2023_01_26_072251) do
     t.string "f_name"
     t.string "l_name"
     t.integer "phone_number"
+    t.string "relationship_id"
   end
 
-  create_table "relationship_categories", force: :cascade do |t|
+  create_table "relationships", force: :cascade do |t|
     t.string "relation"
     t.string "desc"
   end

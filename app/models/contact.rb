@@ -1,3 +1,3 @@
 class Contact < ActiveRecord::Base
-    belongs_to :relationship_category
+    belongs_to :relationship
 end
