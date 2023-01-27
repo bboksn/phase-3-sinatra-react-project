@@ -13,10 +13,19 @@ class ApplicationController < Sinatra::Base
     Relationship.where(relation: params[:relation]).to_json(include: :contacts)
   end
   #create
-  get "/contacts/new" do
+  post "/contacts/new" do
   end
-  get "/relationships/new" do
-    Relationship.all.to_json(include: :contacts)
+  post "/relationships" do
+   r = Relationship.create(
+      relation: params[:relation],
+      desc: params[:desc]
+    )
+    r.to_json
+  end
+  #delete
+  delete "/relationships/:id" do 
+    r= Relationship.find(params[:id])
+    r.destroy
   end
 
 end
