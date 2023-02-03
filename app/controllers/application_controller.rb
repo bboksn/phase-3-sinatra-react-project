@@ -14,6 +14,15 @@ class ApplicationController < Sinatra::Base
   end
   #create
   post "/contacts/new" do
+    c= Contact.create(
+      pfp_url: params[:pfp_url],
+      f_name: params[:f_name],
+      l_name: params[:l_name],
+      phone_number: params[:phone_number],
+      #relationship_id:
+
+    )
+    c.to_json
   end
   post "/relationships" do
    r = Relationship.create(
@@ -26,6 +35,10 @@ class ApplicationController < Sinatra::Base
   delete "/relationships/:id" do 
     r= Relationship.find(params[:id])
     r.destroy
+  end
+  delete "/contacts/:id" do 
+    c= Contact.find(params[:id])
+    c.destroy
   end
 
 end
