@@ -14,7 +14,7 @@ class ApplicationController < Sinatra::Base
   end
   #create
   post "/contacts" do
-    rel = Relationship.where(["relation = ?","params[:relationship_id]"])
+    #rel = Relationship.where(["relation = ?","params[:relationship_id]"])
     #rel = Relationship.find_by relation: params[:relationship_id]
     #rel_id = rel.ids
     c= Contact.create(
@@ -42,5 +42,14 @@ class ApplicationController < Sinatra::Base
     c= Contact.find(params[:id])
     c.destroy
   end
-
+#patch
+patch "/contacts/:id" do
+  c= Contact.find(params[:id])
+  c.pfp_url = params[:pfp_url]
+  c.f_name = params[:f_name]
+  c.l_name = params[:l_name]
+  c.phone_number = params[:phone_number]
+  c.relationship_id params[:relationship_id]
+  return c.to_json
+end
 end
