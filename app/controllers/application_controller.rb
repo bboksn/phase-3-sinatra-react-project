@@ -43,13 +43,23 @@ class ApplicationController < Sinatra::Base
     c.destroy
   end
 #patch
-patch "/contacts/:id" do
-  c= Contact.find(params[:id])
-  c.pfp_url = params[:pfp_url]
-  c.f_name = params[:f_name]
-  c.l_name = params[:l_name]
-  c.phone_number = params[:phone_number]
-  c.relationship_id params[:relationship_id]
-  return c.to_json
+patch "contacts/:id" do 
+  c= Contact.find(params[:id]).update(
+    pfp_url: params[:pfp_url],
+    f_name: params[:f_name],
+    l_name: params[:l_name],
+    phone_number: params[:phone_number],
+    relationship_id: params[:relationship_id]
+  )
+  c.to_json
 end
+#patch "/contacts/:id" do
+ # c= Contact.find(params[:id])
+  #c.pfp_url = params[:pfp_url]
+  #c.f_name = params[:f_name]
+  #c.l_name = params[:l_name]
+  #c.phone_number = params[:phone_number]
+  #c.relationship_id params[:relationship_id]
+  #return c.to_json
+#end
 end
