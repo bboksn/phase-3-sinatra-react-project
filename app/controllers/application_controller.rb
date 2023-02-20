@@ -14,9 +14,6 @@ class ApplicationController < Sinatra::Base
   end
   #create
   post "/contacts" do
-    #rel = Relationship.where(["relation = ?","params[:relationship_id]"])
-    #rel = Relationship.find_by relation: params[:relationship_id]
-    #rel_id = rel.ids
     c= Contact.create(
       pfp_url: params[:pfp_url],
       f_name: params[:f_name],
