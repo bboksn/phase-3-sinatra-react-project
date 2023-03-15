@@ -6,14 +6,16 @@ class ApplicationController < Sinatra::Base
   get "/contacts" do
     Contact.all.to_json(include: :relationship)
   end
+
   get "/relationships" do
     Relationship.all.to_json(include: :contacts)
   end
+
   get "/relationships/:relation" do
     Relationship.where(relation: params[:relation]).to_json(include: :contacts)
   end
   #create
-  post "/contacts" do
+  post "/contacts" do 
     c= Contact.create(
       pfp_url: params[:pfp_url],
       f_name: params[:f_name],
@@ -28,16 +30,18 @@ class ApplicationController < Sinatra::Base
       relation: params[:relation],
       desc: params[:desc]
     )
-    r.to_json
+    r.to_json(include: :contacts)
   end
   #delete
   delete "/relationships/:id" do 
     r= Relationship.find(params[:id])
     r.destroy
+    r.to_json
   end
   delete "/contacts/:id" do 
     c= Contact.find(params[:id])
     c.destroy
+    c.to_json
   end
 #patch 
 patch '/contacts/:id' do
@@ -48,5 +52,6 @@ patch '/contacts/:id' do
   c.phone_number = params[:phone_number]
   c.relationship_id = params[:relationship_id]
   c.save
+  c.to_json
 end
 end
